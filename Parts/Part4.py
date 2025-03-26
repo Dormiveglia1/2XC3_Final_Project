@@ -92,7 +92,7 @@ def create_random_graph(nodes, edges):
     while len(edge_set) < edges:
         u = random.randint(0, nodes - 1)
         v = random.randint(0, nodes - 1)
-        weight = random.randint(-10, 10)
+        weight = random.randint(0, 20)
         
         if (u != v) and (u, v) not in edge_set:
             graph.add_edge(u, v, weight)
