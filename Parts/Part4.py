@@ -1,38 +1,8 @@
 import heapq
 import random
+from directed_weighted_graph import DirectedWeightedGraph
+from create_random_graph import create_random_graph
 
-class DirectedWeightedGraph:
-
-    def __init__(self, nodes):
-        self.adj = {}
-        self.weights = {}
-        for i in range(nodes):
-            self.adj[i] = []
-
-    def are_connected(self, node1, node2):
-        for neighbour in self.adj[node1]:
-            if neighbour == node2:
-                return True
-        return False
-
-    def adjacent_nodes(self, node):
-        return self.adj[node]
-
-    def add_node(self, node):
-        self.adj[node] = []
-
-    def add_edge(self, node1, node2, weight):
-        if node2 not in self.adj[node1]:
-            self.adj[node1].append(node2)
-        self.weights[(node1, node2)] = weight
-
-    # if two nodes are connnected, get its weight
-    def get_weight(self, node1, node2):
-        if self.are_connected(node1, node2):
-            return self.weights[(node1, node2)]
-
-    def number_of_nodes(self):
-        return len(self.adj)
 
 def A_Star(graph, source, destination, heuristic):
     # initilization
@@ -81,24 +51,6 @@ def A_Star(graph, source, destination, heuristic):
     # if no path was found, return the predecessor dictionary and a null list
     return predecessor, []
 
-def create_random_graph(nodes, edges):
-    graph = None
-
-    # your implementation goes here
-    
-    edge_set = set()
-    graph = DirectedWeightedGraph(nodes)
-    
-    while len(edge_set) < edges:
-        u = random.randint(0, nodes - 1)
-        v = random.randint(0, nodes - 1)
-        weight = random.randint(0, 20)
-        
-        if (u != v) and (u, v) not in edge_set:
-            graph.add_edge(u, v, weight)
-            edge_set.add((u, v))
-    
-    return graph
 
 # just return 0
 def heuristic(node):
@@ -110,5 +62,5 @@ print(graph.adj)
 print(graph.weights)
 
 predecessor, path = A_Star(graph, 0, 7, heuristic)
-print(predecessor)
-print(path)
+# print(predecessor)
+# print(path)
