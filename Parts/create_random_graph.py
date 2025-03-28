@@ -19,3 +19,4 @@ def create_random_graph(nodes, edges):
             edge_set.add((u, v))
     
     return graph
+
