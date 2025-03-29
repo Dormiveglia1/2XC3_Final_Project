@@ -56,7 +56,7 @@ def A_Star(graph, source, destination, heuristic):
 def heuristic(node):
     return 0
 
-graph = create_random_graph(10, 12)
+graph = create_random_graph(10, 20)
 
 print(graph.adj)
 print(graph.weights)
