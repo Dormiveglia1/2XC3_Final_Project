@@ -38,7 +38,7 @@ def dijkstra(graph, source, k):
     # End result: Return distance and path (including points traveled)
     return dist, path
 
-
+"""
 graph = create_random_graph(6, 20)
 
 print(graph.adj)
@@ -46,4 +46,5 @@ print(graph.weights)
 
 dist1, path1 = dijkstra(graph, 0, 4)
 print("distance:",dist1)
-print("path",path1)
+print("path",path1)"
+"""

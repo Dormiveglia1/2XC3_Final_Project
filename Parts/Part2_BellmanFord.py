@@ -34,7 +34,7 @@ def bellman_ford(graph, source, k):
 
     return distance, path
 
-
+"""
 graph = create_random_graph(6, 20)
 
 print(graph.adj)
@@ -42,4 +42,5 @@ print(graph.weights)
 
 dist1, path1 = bellman_ford(graph, 0, 4)
 print("distance:",dist1)
-print("path",path1)
+print("path",path1)"
+"""
