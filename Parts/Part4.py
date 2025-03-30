@@ -7,10 +7,9 @@ from create_random_graph import create_random_graph
 def A_Star(graph, source, destination, heuristic):
     # initilization
     open_set = [(0, source)]  # initialize the heap with the a tuple: (total estimate weight for the node to reach the target, node)
-    visited = set() # make sure each node can be accessed only once
-    h = {source: heuristic(source)}  # dictionary to store heuristic values for each node
+    h = {source: heuristic(source, destination)}  # dictionary to store heuristic values for each node
     g = {source: 0}  # the weight from the source node to the current node
-    f = {source: (heuristic(source) + 0)}  # f = g + h
+    f = {source: (heuristic(source, destination) + 0)}  # f = g + h
     predecessor = {}  # record the path
     
     while open_set:
@@ -28,23 +27,17 @@ def A_Star(graph, source, destination, heuristic):
             path.reverse()
             return predecessor, path
         
-        # if not, add it into the visited nodes list
-        visited.add(current)
-        
         # traverse all the neighbor nodes
-        for neighbor in graph.adjacent_nodes(current):
-            # if the node has been visited, ignore it
-            if neighbor in visited:
-                continue
-            
-            # if not, calculate the g value (the total weight required to reach this node)
+        for neighbor in graph.adjacent_nodes(current):     
+
+            # calculate the g value (the total weight required to reach this node)
             g_weight = g[current] + graph.get_weight(current, neighbor)
             
             # if the neighbor node is a new node, or the new path is better, update the information
             if neighbor not in g or g_weight < g[neighbor]:
                 predecessor[neighbor] = current
                 g[neighbor] = g_weight
-                h[neighbor] = heuristic(neighbor)  # store the heuristic value for the neighbor
+                h[neighbor] = heuristic(neighbor, destination)  # store the heuristic value for the neighbor
                 f[neighbor] = g[neighbor] + h[neighbor]
                 heapq.heappush(open_set, (f[neighbor], neighbor))
     
@@ -53,7 +46,7 @@ def A_Star(graph, source, destination, heuristic):
 
 
 # just return 0
-def heuristic(node):
+def heuristic(node, destination):
     return 0
 
 graph = create_random_graph(10, 20)
