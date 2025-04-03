@@ -44,16 +44,15 @@ def A_Star(graph, source, destination, heuristic):
     # if no path was found, return the predecessor dictionary and a null list
     return predecessor, []
 
+# # just return 0
+# def heuristic(node, destination):
+#     return 0
 
-# just return 0
-def heuristic(node, destination):
-    return 0
+# graph = create_random_graph(10, 20)
 
-graph = create_random_graph(10, 20)
+# print(graph.adj)
+# print(graph.weights)
 
-print(graph.adj)
-print(graph.weights)
-
-predecessor, path = A_Star(graph, 0, 7, heuristic)
+# predecessor, path = A_Star(graph, 0, 7, heuristic)
 # print(predecessor)
 # print(path)

@@ -70,7 +70,7 @@ for distance, (station1, station2, line, time) in distance_dict.items():
     station_graph.add_edge(station2, station1, distance)
 
 try:
-    with open('station_graph_data.pkl', 'wb') as file:
+    with open('Part5_station_graph_data.pkl', 'wb') as file:
         pickle.dump(station_graph, file)
 except Exception as e:
-    print(f"发生错误: {e}")
+    print(f"Errpr: {e}")
