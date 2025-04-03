@@ -61,16 +61,17 @@ with open(csv_path, mode='r') as csvfile:
             )
             
             rounded_distance = round(distance, 4)
-            distance_dict[rounded_distance] = (station1, station2, line, time)
+            distance_dict[(station1, station2)] = rounded_distance
 
 station_graph = DirectedWeightedGraph(max(station_dict.keys()) + 1)
 
-for distance, (station1, station2, line, time) in distance_dict.items():
+for (station1, station2), distance in distance_dict.items():
     station_graph.add_edge(station1, station2, distance)
     station_graph.add_edge(station2, station1, distance)
 
+print(station_graph.adj[253])
 try:
     with open('Part5_station_graph_data.pkl', 'wb') as file:
         pickle.dump(station_graph, file)
 except Exception as e:
-    print(f"Errpr: {e}")
+    print(f"Error: {e}")

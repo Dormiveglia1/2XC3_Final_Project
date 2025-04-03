@@ -42,8 +42,8 @@ def dijkstra_paths(graph, source, destination):
 
 def calculate_transfers(path, line_info):
     transfers = 0
-    for i in range(1, len(path)):
-        if line_info.get((path[i-1], path[i])) != line_info.get((path[i], path[i+1] if i+1 < len(path) else path[i])):
+    for i in range(1, len(path) - 1):
+        if line_info.get((path[i-1], path[i])) != line_info.get((path[i], path[i+1])):
             transfers += 1
     return transfers
 
@@ -107,7 +107,7 @@ print(f"Dijkstra Duration: {dijkstra_duration}s, Transfers: {dijkstra_transfers}
 def main(station_graph, line_info, num_stations=303, skip_station=189):
     a_star_results = []
     dijkstra_results = []
-
+    
     for i in range(1, num_stations+1):
         if i == skip_station:
             continue
@@ -133,6 +133,28 @@ def main(station_graph, line_info, num_stations=303, skip_station=189):
             print(i,j,"a_star:",a_star_duration,a_star_transfers)
             print(i, j, "dijkstra:", dijkstra_duration, dijkstra_transfers)
             """
+        
+    '''
+    i = 175
+    j = 174
+
+    start_time = timeit.default_timer()
+    _, a_star_path = A_Star(station_graph, i, j, h)
+    a_star_duration = timeit.default_timer() - start_time
+    print(a_star_path)
+    a_star_transfers = calculate_transfers(a_star_path, line_info)
+    a_star_results.append((a_star_duration, a_star_transfers))
+
+    # Dijkstra Algorithm
+    start_time = timeit.default_timer()
+    dijkstra_path = dijkstra_paths(station_graph, i, j)
+    print(dijkstra_path)
+    dijkstra_duration = timeit.default_timer() - start_time
+    dijkstra_transfers = calculate_transfers(dijkstra_path, line_info)
+    dijkstra_results.append((dijkstra_duration, dijkstra_transfers))
+    print(i,j,"a_star:",a_star_duration,a_star_transfers)
+    print(i, j, "dijkstra:", dijkstra_duration, dijkstra_transfers)
+    '''
     # Calculate average times for A*
     avg_a_star = calculate_average_times(a_star_results)
     # Calculate average times for Dijkstra
@@ -145,4 +167,5 @@ def main(station_graph, line_info, num_stations=303, skip_station=189):
 
 if __name__ == "__main__":
     main(station_graph, line_info)
+    # print(station_graph.adj[174])
     
