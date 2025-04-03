@@ -3,7 +3,6 @@ import random
 from directed_weighted_graph import DirectedWeightedGraph
 from create_random_graph import create_random_graph
 
-
 def A_Star(graph, source, destination, heuristic):
     # initilization
     open_set = [(0, source)]  # initialize the heap with the a tuple: (total estimate weight for the node to reach the target, node)
@@ -11,10 +10,13 @@ def A_Star(graph, source, destination, heuristic):
     g = {source: 0}  # the weight from the source node to the current node
     f = {source: (heuristic(source, destination) + 0)}  # f = g + h
     predecessor = {}  # record the path
-    
+    visited = set()
+
     while open_set:
         # get the node with the lowest total estimate weight from the heap
         _, current = heapq.heappop(open_set) # we only need the node hence ignore the weight
+        
+        visited.add(current)
         
         # if destination has been reached then...
         if current == destination:
@@ -29,7 +31,9 @@ def A_Star(graph, source, destination, heuristic):
         
         # traverse all the neighbor nodes
         for neighbor in graph.adjacent_nodes(current):     
-
+            if neighbor in visited:
+                continue
+                
             # calculate the g value (the total weight required to reach this node)
             g_weight = g[current] + graph.get_weight(current, neighbor)
             

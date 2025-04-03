@@ -117,7 +117,7 @@ def main(station_graph, line_info, num_stations=303, skip_station=189):
             
             # A* Algorithm
             start_time = timeit.default_timer()
-            _, a_star_path = A_Star(station_graph, i, j, heuristics)
+            _, a_star_path = A_Star(station_graph, i, j, h)
             a_star_duration = timeit.default_timer() - start_time
             
             a_star_transfers = calculate_transfers(a_star_path, line_info)
