@@ -12,15 +12,13 @@ def A_Star(graph, source, destination, heuristic):
     predecessor = {}  # record the path
     visited = set()
 
-    visited = set()
-
     while open_set:
         # get the node with the lowest total estimate weight from the heap
         _, current = heapq.heappop(open_set) # we only need the node hence ignore the weight
         
         visited.add(current)
         
-        # 将当前节点标记为已访问
+        # add current node into visited
         visited.add(current)
         
         # if destination has been reached then...
@@ -37,9 +35,6 @@ def A_Star(graph, source, destination, heuristic):
         # traverse all the neighbor nodes
         for neighbor in graph.adjacent_nodes(current):     
             # if neighbor node has been visited, ignore it 
-            if neighbor in visited:
-                continue
-                
             if neighbor in visited:
                 continue
                 
