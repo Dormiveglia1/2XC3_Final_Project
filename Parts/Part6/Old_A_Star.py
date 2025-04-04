@@ -1,6 +1,4 @@
 import heapq
-from directed_weighted_graph import DirectedWeightedGraph
-from create_random_graph import create_random_graph
 
 def A_Star(graph, source, destination, heuristic):
     # initilization
@@ -32,13 +30,13 @@ def A_Star(graph, source, destination, heuristic):
             return predecessor, path
         
         # traverse all the neighbor nodes
-        for neighbor in graph.adjacent_nodes(current):     
+        for neighbor in graph.get_adj_nodes(current):     
             # if neighbor node has been visited, ignore it 
             if neighbor in visited:
                 continue
                 
             # calculate the g value (the total weight required to reach this node)
-            g_weight = g[current] + graph.get_weight(current, neighbor)
+            g_weight = g[current] + graph.w(current, neighbor)
             
             # if the neighbor node is a new node, or the new path is better, update the information
             if neighbor not in g or g_weight < g[neighbor]:
@@ -50,16 +48,3 @@ def A_Star(graph, source, destination, heuristic):
     
     # if no path was found, return the predecessor dictionary and a null list
     return predecessor, [] 
-
-# # just return 0
-# def heuristic(node, destination):
-#     return 0
-
-# graph = create_random_graph(10, 20)
-
-# print(graph.adj)
-# print(graph.weights)
-
-# predecessor, path = A_Star(graph, 0, 7, heuristic)
-# print(predecessor)
-# print(path)
