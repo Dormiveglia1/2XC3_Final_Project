@@ -14,7 +14,6 @@ def read_line_info(file_path):
     return line_info
 
 if __name__ == '__main__':
-    line_info_file = 'london_stations.csv'
     line_info = read_line_info('london_connections.csv')
     with open('Part5_line_info.pkl', 'wb') as f:
         pickle.dump(line_info, f)

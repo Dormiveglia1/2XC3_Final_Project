@@ -25,7 +25,7 @@ def Read_Stations(file_path):
             data_dict[id_] = cleaned_row
     return data_dict
 
-file_path = r"F:\Mcmaster\2024~2025_Winter\2XC3\2XC3_Final_Project\london_stations.csv"
+file_path = r"F:\Mcmaster\2024~2025_Winter\2XC3\2XC3_Final_Project\Parts\Part5\london_stations.csv"
 station_dict = Read_Stations(file_path)
 '''
 for id, data in station_dict.items():
@@ -42,7 +42,7 @@ def Distance(lat1, lon1, lat2, lon2):
 
 distance_dict = {}
 
-csv_path = r"F:\Mcmaster\2024~2025_Winter\2XC3\2XC3_Final_Project\london_connections.csv"
+csv_path = r"F:\Mcmaster\2024~2025_Winter\2XC3\2XC3_Final_Project\Parts\Part5\london_connections.csv"
 with open(csv_path, mode='r') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
